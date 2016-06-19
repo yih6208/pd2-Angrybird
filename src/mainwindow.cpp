@@ -101,7 +101,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         if(avaliable[Activate]==true){
             if( birdie[Activate]->type==yellow){
                 b2Vec2 Vel = birdie[Activate]->g_body->GetLinearVelocity();
-                birdie[Activate]->g_body->SetLinearVelocity(b2Vec2(Vel.x+10,Vel.y-6));
+                birdie[Activate]->g_body->SetLinearVelocity(b2Vec2(Vel.x+15,Vel.y-6));
 
 
             }
@@ -134,7 +134,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
                 b2Vec2 PigPos = birdie[7]->g_body->GetPosition();
                 PigX = ((PigPos.x-birdie[7]->g_size.width()/2) * birdie[7]->g_windowsize.width())/birdie[7]->g_worldsize.width();
                 PigY = (1.0f - (PigPos.y+birdie[7]->g_size.height()/2)/birdie[7]->g_worldsize.height()) * birdie[7]->g_windowsize.height();
-                if(abs(ActivateX-PigX)<500&&abs(ActivateX-PigY)<500){
+                if(abs(ActivateX-PigX)<200&&abs(ActivateX-PigY)<200){
                     avaliable[7]=false;
                     delete birdie[7];
                 }
@@ -149,6 +149,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
                     birdie[i] = new Bird(ActivatePos.x,ActivatePos.y,0.27f,&timer,QPixmap(":/blue.png").scaled(height()/9.0,height()/9.0),world,scene,5);
                     birdie[i]->setLinearVelocity(b2Vec2(2*ActivateVel.x,ActivateVel.y+6*(i-5)));
                     itemList.push_back(birdie[i]);
+                    avaliable[i]=true;
 
                 }
                 delete birdie[Activate];
@@ -239,6 +240,9 @@ void MainWindow::Retry()
     if(avaliable[1]==true) delete birdie[1];
     delete birdie[2];
     if(avaliable[3]==true) delete birdie[3];
+    if(avaliable[4]==true) delete birdie[4];
+    if(avaliable[5]==true) delete birdie[5];
+    if(avaliable[6]==true) delete birdie[6];
     if(avaliable[7]==true) delete birdie[7];
 
 
@@ -258,6 +262,7 @@ void MainWindow::Retry()
     for (int i=0;i<4;i++){
         avaliable[i]=true;
     }
-
-    //this=new MainWindow();
+    for (int i=4;i<7;i++){
+        avaliable[i]=false;
+    }
 }
