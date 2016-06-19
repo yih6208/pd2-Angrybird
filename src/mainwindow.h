@@ -40,12 +40,13 @@ private slots:
     void QUITSLOT();
     void Ready();
     void Retry();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     b2World *world;
     QList<GameItem *> itemList;
-    QTimer timer,sleep;
+    QTimer timer,sleep,kill;
     bool MousePress=false,BirdAim=false;
     Bird *birdie[10];
     int current=0,Activate=0;
